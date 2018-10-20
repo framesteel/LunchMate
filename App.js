@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
 import HomeScreen from './screens/HomeScreen';
 import deals from './screens/deals';
-import testpage from './screens/testpage'
-
-import TabNavigator from './navigation/MainTabNavigator'
+import TabNavigator from './navigation/MainTabNavigator';
+import Loading from './screens/Loading';
+import signUp from './screens/signUp';
+import Login from './screens/Login';
 /*
 const Navigation = StackNavigator({
     deals: {screen: deals},
@@ -15,6 +16,8 @@ const Navigation = StackNavigator({
 
 export default Navigation;
 */
+
+//Creating the navigation stack
 
 export default class App extends React.Component {
 

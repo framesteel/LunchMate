@@ -10,7 +10,7 @@ export default class RestuarantCard extends React.Component {
 
     _onPressButton = () => {
         console.log(this.props)
-        this.props.navigation.navigate('testpage', {
+        this.props.navigation.navigate('deals', {
             title: this.props.title
         })
     };
