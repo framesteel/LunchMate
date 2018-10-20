@@ -8,6 +8,7 @@ import { Icon } from 'react-native-elements';
 import HomeScreen from '../screens/HomeScreen';
 import Nearme from '../screens/Nearme';
 import Subscriptions from '../screens/Subscriptions';
+import StackNav from '../navigation/StackNav';
 
 
 var {height, width} = Dimensions.get('window');
@@ -15,7 +16,7 @@ var {height, width} = Dimensions.get('window');
 export default createBottomTabNavigator(
     {
         Home: {
-            screen: HomeScreen,
+            screen: StackNav,
             navigationOptions: {
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ tintColor }) => (
@@ -53,6 +54,19 @@ export default createBottomTabNavigator(
                 )
             }
         },
+    /*    StackNav: {
+            screen: StackNav,
+            navigationOptions: {
+                tabBarLabel: 'StackNav',
+                tabBarIcon: ({ tintColor }) => (
+                    <Icon
+                        name={'home'}
+                        size={26}
+                        style={{ color: tintColor }}
+                    />
+                ),
+            }
+        },*/
     },
     {
         initialRouteName: 'Home',

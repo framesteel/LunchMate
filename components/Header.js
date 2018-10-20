@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1.25,
         width: width,
-        backgroundColor: 'yellow',
+        backgroundColor: 'purple',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         fontSize: 30,
         fontFamily: 'serif',
-        color: 'green',
+        color: 'white',
     }
 });
