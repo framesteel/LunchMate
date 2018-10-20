@@ -6,20 +6,34 @@ import RestuarantCard from '../components/RestuarantCard';
 
 export default class HomeScreen extends React.Component {
 
+    state = {
+        restuarants : [{name: "Subway"},{name: "Arby's"},{name: 'Burger King'},{name: "McDonald's"},{name: "Wendy's"}]
+    }
+
+    static navigationOptions = {
+        headerStyle: {
+            height: 0
+        },
+    };
+
     //_componentWillMount(){
         //call to askfor user location permissions
     //}
   render() {
+
     return (
       <View style={styles.container}>
         <Header title="Lunchmate"/>
         <View style={styles.scroll}>
             <ScrollView>
-                <RestuarantCard title="1"/>
-                <RestuarantCard title="2"/>
-                <RestuarantCard title="3"/>
-                <RestuarantCard title="4"/>
-                <RestuarantCard title="5"/>
+                {this.state.restuarants.map((place, index) => (
+                    <RestuarantCard key={index} title={place.name} navigation={this.props.navigation}/>
+                ))}
+                <RestuarantCard title="Placeholder 1" navigation={this.props.navigation}/>
+                <RestuarantCard title="Placeholder 2"/>
+                <RestuarantCard title="Placeholder 3"/>
+                <RestuarantCard title="Placeholder 4"/>
+                <RestuarantCard title="Placeholder 5"/>
             </ScrollView>
         </View>
       </View>
