@@ -15,6 +15,7 @@ export default class Nearme extends React.Component {
         longitude: 0
       },
       results: [],
+
     }
   }
 
