@@ -12,7 +12,7 @@ export default class Nearme extends React.Component {
         latitude: 0,
         longitude: 0
       },
-      places;
+      places,
     }
   }
 
