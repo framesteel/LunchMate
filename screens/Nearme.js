@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Text, View, PermissionsAndroid, ScrollView } from 'react-native';
 
+import Header from '../components/Header';
+import RestuarantCard from '../components/RestuarantCard';
 
 const API_Key = "AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM";
 export default class Nearme extends React.Component {
@@ -12,8 +14,17 @@ export default class Nearme extends React.Component {
         latitude: 0,
         longitude: 0
       },
-      places,
+      results: [],
+
     }
+  }
+
+  getRestuarants() {
+    fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.14665099,-81.34278554&radius=2000&type=restaurant&keyword=fast&key=AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({results: responseJson.results})
+      })
   }
 
   async requestLocationPermission() {
@@ -33,7 +44,7 @@ export default class Nearme extends React.Component {
     }
     catch (err) {
       console.warn(err)
-  }
+    }
   }
 
   componentWillMount() {
@@ -46,23 +57,40 @@ export default class Nearme extends React.Component {
           longitude: long
         }
       })
+      this.getRestuarants()
     })
   }
   render() {
+
     return (
       <View style={styles.container}>
-        <Text>Lat: {this.state.position.latitude}</Text>
-        <Text>Long: {this.state.position.longitude}</Text>
+        <Header title="Lunchmate"/>
+        <View style={styles.scroll}>
+            <ScrollView>
+                {this.state.results.map((place, index) => (
+                    <RestuarantCard key={index} title={place.name} navigation={this.props.navigation}/>
+                ))}
+                <RestuarantCard title="Placeholder 1" navigation={this.props.navigation}/>
+                <RestuarantCard title="Placeholder 2"/>
+                <RestuarantCard title="Placeholder 3"/>
+                <RestuarantCard title="Placeholder 4"/>
+                <RestuarantCard title="Placeholder 5"/>
+            </ScrollView>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+        flex: 7,
+    },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex:1,
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
+
   },
 });
