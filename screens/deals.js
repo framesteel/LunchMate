@@ -12,6 +12,9 @@ export default class deals extends React.Component {
     };
 
 
+  componentWillMount = () => {
+    
+  }
 
   render() {
 
