@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Card } from 'react-native';
 
 import Header from '../components/Header';
 import RestuarantCard from '../components/RestuarantCard';
@@ -30,10 +30,7 @@ export default class HomeScreen extends React.Component {
                     <RestuarantCard key={index} title={place.name} navigation={this.props.navigation}/>
                 ))}
                 <RestuarantCard title="Placeholder 1" navigation={this.props.navigation}/>
-                <RestuarantCard title="Placeholder 2"/>
-                <RestuarantCard title="Placeholder 3"/>
-                <RestuarantCard title="Placeholder 4"/>
-                <RestuarantCard title="Placeholder 5"/>
+
             </ScrollView>
         </View>
       </View>
@@ -47,9 +44,8 @@ const styles = StyleSheet.create({
     },
   container: {
     flex:1,
-    backgroundColor: 'white',
+    //backgroundColor: '#757889',
     alignItems: 'center',
     justifyContent: 'center',
-
-  },
+  }
 });

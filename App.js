@@ -26,7 +26,7 @@ const App = SwitchNavigator(
         MainTabNavigator
     },
     {
-        initialRouteName: 'MainTabNavigator'
+        initialRouteName: 'Loading'
     }
 )
 export default App
