@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Card } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Card, RefreshControl } from 'react-native';
 
 import Header from '../components/Header';
 import RestuarantCard from '../components/RestuarantCard';
@@ -9,6 +9,14 @@ export default class HomeScreen extends React.Component {
     state = {
         restuarants : [{name: "Subway"},{name: "Arby's"},{name: 'Burger King'},{name: "McDonald's"},{name: "Wendy's"}]
     }
+
+    _onRefresh = () => {
+      var stuff = [{name: "Subway"},{name: "Arby's"},{name: 'Burger King'},{name: "McDonald's"},{name: "Wendy's"}];
+    this.setState({refreshing: true});
+    this.setState({restaurant: ' '});
+    this.setState({refreshing: false});
+    this.setState({restaurant: stuff});
+  }
 
     static navigationOptions = {
         headerStyle: {
@@ -23,9 +31,13 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Header title="Lunchmate"/>
+        <Header title="Lunchmate Home"/>
         <View style={styles.scroll}>
-            <ScrollView>
+            <ScrollView refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />}>
                 {this.state.restuarants.map((place, index) => (
                     <RestuarantCard key={index} title={place.name} navigation={this.props.navigation}/>
                 ))}

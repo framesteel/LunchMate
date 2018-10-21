@@ -12,6 +12,7 @@ import Subscriptions from '../screens/Subscriptions';
 import Logout from '../screens/Logout';
 import StackNav from '../navigation/StackNav';
 import StackNav_2 from '../navigation/StackNav_2';
+import StackNav_3 from '../navigation/StackNav_3';
 
 
 var {height, width} = Dimensions.get('window');
@@ -45,7 +46,7 @@ export default createBottomTabNavigator(
             }
         },
         Subscriptions: {
-            screen: Subscriptions,
+            screen: StackNav_3,
             navigationOptions: {
                 tabBarLabel: 'Subscriptions',
                 tabBarIcon: ({ tintColor }) => (

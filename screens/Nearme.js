@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, PermissionsAndroid, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, PermissionsAndroid, ScrollView, Dimensions, RefreshControl } from 'react-native';
 
 import Header from '../components/Header';
 import RestuarantCard from '../components/RestuarantCard';
@@ -12,6 +12,7 @@ export default class Nearme extends React.Component {
     super(props)
 
     this.state = {
+      refreshing: false,
       position: {
         latitude: 0,
         longitude: 0
@@ -20,7 +21,9 @@ export default class Nearme extends React.Component {
     }
   }
 
-  getRestuarants() {
+  getRestuarants = () => {
+    var empty = [];
+    this.setState({results: empty})
     fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.position.latitude+','+this.state.position.longitude+'&radius=2000&type=restaurant&keyword=fast&key=AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM')
       .then((response) => response.json())
       .then((responseJson) => {
@@ -31,6 +34,7 @@ export default class Nearme extends React.Component {
         var unique = names.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
         this.setState({results: unique})
       })
+      this.setState({refreshing: false})
   }
 
   async requestLocationPermission() {
@@ -77,10 +81,14 @@ export default class Nearme extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Header title="Lunchmate" style={styles.Header}/>
+        <Header title="Lunchmate Near Me" style={styles.Header}/>
         <Text>{this.state.latitude}</Text>
         <View style={styles.scroll}>
-            <ScrollView>
+            <ScrollView refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.getRestuarants}
+              />}>
                 {this.state.results.map((place, index) => (
                     <RestuarantCard key={index} title={place} navigation={this.props.navigation}/>
                 ))}
