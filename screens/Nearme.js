@@ -15,15 +15,19 @@ export default class Nearme extends React.Component {
         longitude: 0
       },
       results: [],
-
     }
   }
 
   getRestuarants() {
-    fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.14665099,-81.34278554&radius=2000&type=restaurant&keyword=fast&key=AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM')
+    fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.position.latitude+','+this.state.position.longitude+'&radius=2000&type=restaurant&keyword=fast&key=AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM')
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({results: responseJson.results})
+        var names = [];
+        for (i=0; i<responseJson.results.length; i++){
+          names[i]=responseJson.results[i].name;
+        }
+        var unique = names.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+        this.setState({results: unique})
       })
   }
 
@@ -65,16 +69,12 @@ export default class Nearme extends React.Component {
     return (
       <View style={styles.container}>
         <Header title="Lunchmate"/>
+        <Text>{this.state.latitude}</Text>
         <View style={styles.scroll}>
             <ScrollView>
                 {this.state.results.map((place, index) => (
-                    <RestuarantCard key={index} title={place.name} navigation={this.props.navigation}/>
+                    <RestuarantCard key={index} title={place} navigation={this.props.navigation}/>
                 ))}
-                <RestuarantCard title="Placeholder 1" navigation={this.props.navigation}/>
-                <RestuarantCard title="Placeholder 2"/>
-                <RestuarantCard title="Placeholder 3"/>
-                <RestuarantCard title="Placeholder 4"/>
-                <RestuarantCard title="Placeholder 5"/>
             </ScrollView>
         </View>
       </View>
