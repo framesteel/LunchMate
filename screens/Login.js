@@ -1,19 +1,28 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import firebase from 'react-native-firebase'
+
+import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity } from 'react-native'
 export default class Login extends React.Component {
   state = { email: '', password: '', errorMessage: null }
   handleLogin = () => {
-    // TODO: Firebase stuff...
-    console.log('handleLogin')
+    const { email, password } = this.state
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('MainTabNavigator'))
+      .catch(error => this.setState({ errorMessage: error.message }))
   }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
-        {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
-            {this.state.errorMessage}
-          </Text>}
+
+            <Text>LunchMate</Text>
+            {this.state.errorMessage &&
+              <Text style={{ color: 'red' }}>
+                {this.state.errorMessage}
+              </Text>}
+
         <TextInput
           style={styles.textInput}
           autoCapitalize="none"
@@ -21,6 +30,7 @@ export default class Login extends React.Component {
           onChangeText={email => this.setState({ email })}
           value={this.state.email}
         />
+
         <TextInput
           secureTextEntry
           style={styles.textInput}
@@ -29,11 +39,18 @@ export default class Login extends React.Component {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Login" onPress={this.handleLogin} />
-        <Button
+
+        <TouchableOpacity title="Login" style={styles.buttonContainer} onPress={this.handleLogin} >
+            <Text styles={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           title="Don't have an account? Sign Up"
-          onPress={() => this.props.navigation.navigate('SignUp')}
-        />
+          onPress={() => this.props.navigation.navigate('signUp')}
+        >
+
+            <Text>Need an account? Sign Up</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -41,6 +58,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#C5E7D7',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -50,5 +68,21 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8
+  },
+  buttonContainer: {
+      backgroundColor: 'white',
+      //width: 75,
+      paddingVertical: 15,
+      justifyContent: 'center',
+      marginBottom: 10,
+      marginTop: 10,
+      width: '35%',
+      alignItems: 'center',
+      borderRadius: 9
+  },
+  buttonText: {
+      textAlign: 'center',
+      fontWeight: '900'
   }
+
 })

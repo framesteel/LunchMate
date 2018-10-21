@@ -1,11 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import firebase from 'react-native-firebase'
+
+import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity } from 'react-native'
 export default class SignUp extends React.Component {
   state = { email: '', password: '', errorMessage: null }
-handleSignUp = () => {
-  // TODO: Firebase stuff...
-  console.log('handleSignUp')
-}
+  handleSignUp = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => this.props.navigation.navigate('MainTabNavigator'))
+      .catch(error => this.setState({ errorMessage: error.message }))
+  }
+
 render() {
     return (
       <View style={styles.container}>
@@ -29,11 +35,15 @@ render() {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Sign Up" onPress={this.handleSignUp} />
-        <Button
+        <TouchableOpacity title="Sign Up" onPress={this.handleSignUp} >
+            <Text>Sign Up</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate('Login')}
-        />
+        >
+        <Text>Already have an account? Login</Text>
+        </TouchableOpacity>
       </View>
     )
   }
