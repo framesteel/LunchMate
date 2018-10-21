@@ -15,11 +15,12 @@ export default class SignUp extends React.Component {
 render() {
     return (
       <View style={styles.container}>
-        <Text>Sign Up</Text>
+        <Text style={styles.titleText}>Lunchmate</Text>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
           </Text>}
+
         <TextInput
           placeholder="Email"
           autoCapitalize="none"
@@ -27,6 +28,7 @@ render() {
           onChangeText={email => this.setState({ email })}
           value={this.state.email}
         />
+
         <TextInput
           secureTextEntry
           placeholder="Password"
@@ -35,14 +37,16 @@ render() {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <TouchableOpacity title="Sign Up" onPress={this.handleSignUp} >
-            <Text>Sign Up</Text>
+
+        <TouchableOpacity title="Sign Up" style={styles.buttonContainer} onPress={this.handleSignUp} >
+            <Text styles={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           title="Already have an account? Login"
           onPress={() => this.props.navigation.navigate('Login')}
         >
-        <Text>Already have an account? Login</Text>
+        <Text style={styles.fatFingers}>Already have an account? Login</Text>
         </TouchableOpacity>
       </View>
     )
@@ -51,6 +55,7 @@ render() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#C5E7D7',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -60,5 +65,31 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     marginTop: 8
+  },
+  buttonContainer: {
+      backgroundColor: 'white',
+      //width: 75,
+      paddingVertical: 15,
+      justifyContent: 'center',
+      marginBottom: 10,
+      marginTop: 10,
+      width: '35%',
+      alignItems: 'center',
+      borderRadius: 9
+  },
+  buttonText: {
+      textAlign: 'center',
+      fontWeight: '900'
+  },
+  titleText: {
+      textAlign: 'center',
+      fontWeight: '900',
+      fontStyle: 'italic',
+      fontSize: 40,
+      fontFamily: 'serif'
+  },
+  fatFingers: {
+      paddingVertical: 15
   }
+
 })

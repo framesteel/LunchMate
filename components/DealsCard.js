@@ -20,17 +20,26 @@ export default class DealsCard extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: width,
-        height: height/6,
-        backgroundColor: 'white',
+        width: width * .95,
+        height: height/6.85,
+        borderRadius: 20,
+        borderColor: '#C0C0C0',
+        backgroundColor: '#F0E9B6',
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottomColor: 'grey',
-        borderBottomWidth: 2,
+        marginBottom: 2,
+        marginTop: 4,
+        textAlign: 'center',
+        //borderBottomColor: '#C0C0C0',
+        //borderBottomWidth: 1.35,
+        borderWidth: 1.35
     },
     Header: {
-        fontSize: 30,
+        textAlign: 'center',
+        fontSize: 14,
+        paddingLeft: 10,
+        paddingRight: 10,
         fontFamily: 'serif',
-        color: 'green',
+        color: '#391B2A',
     }
 });

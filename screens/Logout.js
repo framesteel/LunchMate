@@ -5,14 +5,24 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Header from '../components/Header';
 import RestuarantCard from '../components/RestuarantCard';
 
-export default class Subscriptions extends React.Component {
+export default class Logout extends React.Component {
 
-    
+
+    _logout(){
+        firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+    }, function(error) {
+  // An error happened.
+});
+    }
   render() {
     return (
-        <View>
-            <Text>Subscriptions</Text>
-        </View>
+      <View style={styles.container}>
+        <Text>Goodbye!</Text>
+        <TouchableOpacity>
+            <Text style={styles.Logout} onPress={this._logout()}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }

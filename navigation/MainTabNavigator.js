@@ -9,7 +9,9 @@ import { Icon } from 'react-native-elements';
 import HomeScreen from '../screens/HomeScreen';
 import Nearme from '../screens/Nearme';
 import Subscriptions from '../screens/Subscriptions';
+import Logout from '../screens/Logout';
 import StackNav from '../navigation/StackNav';
+import StackNav_2 from '../navigation/StackNav_2';
 
 
 var {height, width} = Dimensions.get('window');
@@ -30,7 +32,7 @@ export default createBottomTabNavigator(
             }
         },
         Nearme: {
-            screen: Nearme,
+            screen: StackNav_2,
             navigationOptions: {
                 tabBarLabel: 'Locations',
                 tabBarIcon: ({ tintColor }) => (
@@ -55,19 +57,19 @@ export default createBottomTabNavigator(
                 )
             }
         },
-    /*    StackNav: {
-            screen: StackNav,
+       Logout: {
+            screen: Logout,
             navigationOptions: {
-                tabBarLabel: 'StackNav',
+                tabBarLabel: 'Logout',
                 tabBarIcon: ({ tintColor }) => (
                     <Icon
-                        name={'home'}
+                        name={'cancel'}
                         size={26}
                         style={{ color: tintColor }}
                     />
                 ),
             }
-        },*/
+        },
     },
     {
         initialRouteName: 'Home',
