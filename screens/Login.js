@@ -17,7 +17,7 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
 
-            <Text>LunchMate</Text>
+            <Text style={styles.titleText}>Lunchmate</Text>
             {this.state.errorMessage &&
               <Text style={{ color: 'red' }}>
                 {this.state.errorMessage}
@@ -49,7 +49,7 @@ export default class Login extends React.Component {
           onPress={() => this.props.navigation.navigate('signUp')}
         >
 
-            <Text>Need an account? Sign Up</Text>
+            <Text style={styles.fatFingers}>Need an account? Sign Up</Text>
         </TouchableOpacity>
       </View>
     )
@@ -83,6 +83,17 @@ const styles = StyleSheet.create({
   buttonText: {
       textAlign: 'center',
       fontWeight: '900'
+  },
+  titleText: {
+      textAlign: 'center',
+      fontWeight: '900',
+      fontStyle: 'italic',
+      fontSize: 40,
+      fontFamily: 'serif'
+  },
+  fatFingers: {
+      paddingVertical: 15
   }
+
 
 })

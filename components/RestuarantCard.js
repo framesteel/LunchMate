@@ -15,6 +15,48 @@ export default class RestuarantCard extends React.Component {
         })
     };
 
+    /*
+    async _updateList() {
+        const response = await AsyncStorage.getItem('listOfSubscriptions');
+        const listOfSubscriptions = await JSON.parse(response) || [];
+            this.setState({
+                favorites: Subscriptions
+            });
+            console.log(this.state.Subscriptions);
+            if (listOfSubscriptions.includes(this.props.Subscriptions)) {
+                this.setState({ isLiked: true });
+            }
+            else {
+                this.setState({ isLiked: false })
+            }
+            console.log(this.state.isSubed);
+        };
+
+    componentDidMount() {
+        console.log(this.props.RestuarantCard);
+        this._updateList();
+    };
+
+     renderStar() {
+  if (this.state.isLiked) {
+    return (
+      <Image
+        source={require('./images/logo.png')}
+         style={{
+           width: '50%',
+           height: '50%',
+           alignItems: 'flex-end',
+           alignSelf: 'center',
+           marginTop: 0,
+           resizeMode: 'contain',
+           marginBottom: 0,
+           paddingBottom: 0,
+           marginLeft: '20%'
+         }}
+      />
+          );
+  };
+*/
     render() {
         return(
             <View style={styles.container}>
@@ -41,12 +83,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 2,
         marginTop: 4,
+        textAlign: 'center',
         //borderBottomColor: '#C0C0C0',
         //borderBottomWidth: 1.35,
         borderWidth: 1.35
     },
     Header: {
-        fontSize: 30,
+        fontSize: 24,
         fontFamily: 'serif',
         color: '#391B2A',
     }

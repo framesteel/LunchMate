@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, PermissionsAndroid, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, PermissionsAndroid, ScrollView, Dimensions } from 'react-native';
 
 import Header from '../components/Header';
 import RestuarantCard from '../components/RestuarantCard';
+
+var {height, width} = Dimensions.get('window');
 
 const API_Key = "AIzaSyAelcE44NB-3d40mpX2UOq87ueXFhD8DgM";
 export default class Nearme extends React.Component {
@@ -64,11 +66,18 @@ export default class Nearme extends React.Component {
       this.getRestuarants()
     })
   }
+
+  static navigationOptions = {
+      headerStyle: {
+          height: 0
+      },
+  };
+
   render() {
 
     return (
       <View style={styles.container}>
-        <Header title="Lunchmate"/>
+        <Header title="Lunchmate" style={styles.Header}/>
         <Text>{this.state.latitude}</Text>
         <View style={styles.scroll}>
             <ScrollView>
@@ -88,9 +97,14 @@ const styles = StyleSheet.create({
     },
   container: {
     flex:1,
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
 
   },
+  Header: {
+      fontSize: 30,
+      fontFamily: 'serif',
+      color: '#391B2A',
+  }
 });
