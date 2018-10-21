@@ -4,7 +4,7 @@ import { StackNavigator, SwitchNavigator } from 'react-navigation';
 
 import HomeScreen from './screens/HomeScreen';
 import deals from './screens/deals';
-import TabNavigator from './navigation/MainTabNavigator';
+import MainTabNavigator from './navigation/MainTabNavigator';
 import Loading from './screens/Loading';
 import signUp from './screens/signUp';
 import Login from './screens/Login';
@@ -18,18 +18,28 @@ export default Navigation;
 */
 
 //Creating the navigation stack
-
-export default class App extends React.Component {
+const App = SwitchNavigator(
+    {
+        Loading,
+        signUp,
+        Login,
+        MainTabNavigator
+    },
+    {
+        initialRouteName: 'MainTabNavigator'
+    }
+)
+export default App
 
     //_componentWillMount(){
         //call to askfor user location permissions
     //}
-  render() {
-    return (
-    <TabNavigator/>
-    );
-  }
-}
+  //render() {
+    //return (
+    //<TabNavigator/>
+    //);
+  //}
+//}
 
 /*
 //subjext to change
